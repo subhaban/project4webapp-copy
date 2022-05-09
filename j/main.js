@@ -342,4 +342,76 @@ async function addMarkers() {
     let data = response.json();
     return data;
   }
+ 
   
+/////  show Capitals /////
+
+
+async function getCapitals(){
+
+ let states =  await fetch('./data/capital.json');
+    let capitalNames =  states.json();
+    console.log(states);
+    console.log(capitalNames);
+    return capitalNames;
+}
+  
+async function addPopups() {
+   removeMarkers();
+
+  var list = await getCapitals();
+    
+      let states = list.states;
+      console.log(states);
+  for (var i = 0; i < states.length; i++)
+   {
+   
+    var data =  states[i].capital;
+    console.log(data);
+   
+    var Icon = L.Icon.extend({
+      options: {
+        shadowUrl: "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+        iconSize: [30, 85],
+        shadowSize: [50, 64],
+        iconAnchor: [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor: [-3, -76]
+      }
+    }),
+      location = [states[i].lat,states[i].long];
+      city = states[i].capital;
+      //console.log(cap);
+      html = `<b> ${city} </b><br/>`,
+      marker = L.marker(location, {
+        icon: new Icon({
+          iconUrl:
+            "http://leafletjs.com/examples/custom-icons/" +
+              getRandomItemFromArray()
+        }),
+         //title: "tweet " + i,
+         title: location,
+        // title: "Temp: " + weatherResult.main.temp + "°C",
+        title: `${states[i].name} /Capital: ${states[i].capital}`,
+        alt: "usr " + i,
+        riseOnHover: true
+      }).bindPopup(html );/* ,{autoClose:false} );*/
+    marker.isRandom = true; // just to differenciate from any other markers available in the map
+    // add just marker/ marker with popup/ just popup
+    marker.addTo(map); // map.addLayer(marker); .openPopup();
+  
+  }
+
+}
+
+function removePopups(){
+  map.eachLayer(function(layer) {
+    if (
+      layer instanceof L.Marker &&
+      layer.isRandom /* ensure that we are not removing any other markers available in the map, see how the marker is added to the map */
+    ) {
+      layer.remove(); // layer.removeFrom(map); map.removeLayer(layer);
+    }
+  });
+}
+
