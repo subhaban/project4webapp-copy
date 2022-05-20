@@ -235,19 +235,19 @@ icon: fl11
 }).bindPopup('<h5>California</h5>')
 var fl12marker = L.marker([43.613739, -116.237651], {
 icon: fl12
-}).bindPopup('<h5>California</h5>');;;
+}).bindPopup('<h5>California</h5>')
 var fl13marker = L.marker([40.6331, -89.3935], {
 icon: fl13
-});
+})
 var fl14marker = L.marker([41.590939, -93.620866], {
 icon: fl14
-});
+})
 var fl15marker = L.marker([39.0119, -98.4842], {
 icon: fl15
-});
+})
 var fl16marker = L.marker([38.197274,-84.86311], {
 icon: fl16
-});
+})
 var fl17marker = L.marker([31.0005, -92.004], {
 icon: fl17
 });
