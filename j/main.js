@@ -89,6 +89,7 @@ var baseLayers = {
 //     "LineData":linedata,
 //     "PolygonData":polygondata
 // };
+
 var fl1 = new FlagIcon({
   iconUrl: 'i/flags/alabama-flag-icon-64.png'
 }),
